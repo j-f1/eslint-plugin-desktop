@@ -73,10 +73,9 @@ ruleTester.run('no-stateless-class', rule, {
       `
       class ClassWithParentAndInterface extends MyOtherClass {}
       `,
-      // broken due to parser bug https://github.com/eslint/typescript-eslint-parser/pull/363
-      // `
-      // class ClassWithParentAndInterface implements MyInterface extends MyOtherClass {}
-      // `,
+      `
+      class ClassWithParentAndInterface implements MyInterface extends MyOtherClass {}
+      `,
       `class Point {
         constructor(public x: number, public y: number) {}
       }
