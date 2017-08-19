@@ -26,7 +26,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-typescript": "github:nzakas/eslint-plugin-typescript#0d8b8a7",
-    "typescript-eslint-parser": "^5.0.1"
+    "typescript-eslint-parser": "^6.0.0"
   },
   "devDependencies": {
     "eslint": "^4.4.1",
