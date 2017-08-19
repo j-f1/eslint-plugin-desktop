@@ -41,7 +41,15 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
+`eslint-plugin-desktop` also includes an ESLint config for use with your application:
 
+```json
+{
+  "extends": [
+    "plugin:desktop/recommended"
+  ]
+}
+```
 
 ## Supported Rules
 
