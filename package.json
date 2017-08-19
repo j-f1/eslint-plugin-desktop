@@ -10,17 +10,32 @@
   "author": "Jed Fox",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha tests --recursive"
+    "lint": "eslint 'lib/**/*.js' 'tests/**/*.js' 'docs/**/*.md'",
+    "test": "npm -s run lint && npm -s run mocha",
+    "mocha": "mocha tests --recursive"
   },
   "dependencies": {
-    "requireindex": "~1.1.0"
+    "estraverse": "^4.2.0",
+    "requireindex": "~1.1.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-markdown": "^1.0.0-beta.6",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-prettier": "^2.2.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-typescript": "github:nzakas/eslint-plugin-typescript#0d8b8a7",
+    "typescript-eslint-parser": "^5.0.1"
   },
   "devDependencies": {
-    "eslint": "~3.9.1",
-    "mocha": "^3.1.2"
+    "eslint": "^4.4.1",
+    "mocha": "^3.1.2",
+    "typescript": "^2.4.2",
+    "prettier": "^1.5.3",
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=6.0.0"
   },
   "license": "ISC"
 }
