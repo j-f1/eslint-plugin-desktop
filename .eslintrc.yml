@@ -13,3 +13,10 @@ rules:
     - semi: false
       singleQuote: true
       trailingComma: es5
+  spaced-comment:
+    - error
+    - always
+    - exceptions:
+        - /
+      markers:
+        - /
