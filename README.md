@@ -1,5 +1,7 @@
 # eslint-plugin-desktop
 
+[![Travis](https://img.shields.io/travis/j-f1/eslint-plugin-desktop.svg)](https://travis-ci.org/j-f1/eslint-plugin-desktop)
+
 Custom rules used in the GitHub Desktop codebase
 
 ## Installation
