@@ -4,101 +4,99 @@ const fs = require('fs')
 const chalk = require('chalk')
 const diff = require('diff')
 const ora = require('ora')
+;(() => {
+  const isChecking = process.argv[2] === 'check'
+  const verb = isChecking ? 'Checking' : 'Updating'
 
-const isChecking = process.argv[2] === 'check'
-const verb = isChecking ? 'Checking' : 'Updating'
+  const projectRoot = path.resolve(__dirname, '..')
 
-const projectRoot = path.resolve(__dirname, '..')
+  const rulesDir = path.join(projectRoot, 'lib', 'rules')
+  const docsDir = path.join(projectRoot, 'docs', 'rules')
+  const readmePath = path.resolve(projectRoot, 'README.md')
 
-const rulesDir = path.join(projectRoot, 'lib', 'rules')
-const docsDir = path.join(projectRoot, 'docs', 'rules')
-const readmePath = path.resolve(projectRoot, 'README.md')
+  const spinner = ora('Reading rules...').start()
 
-const spinner = ora('Reading rules...').start()
+  const rulePaths = fs
+    .readdirSync(rulesDir)
+    .map(name => path.resolve(rulesDir, name))
 
-const rulePaths = fs
-  .readdirSync(rulesDir)
-  .map(name => path.resolve(rulesDir, name))
-
-const ruleLines = []
-
-for (const rulePath of rulePaths) {
-  const name = path.basename(rulePath, path.extname(rulePath))
-  spinner.start(
-    `${verb} rule ${rulePaths.indexOf(rulePath)} of ${rulePaths.length}...`
-  )
-
-  const data = require(rulePath)
-  if (!(data.meta && data.meta.docs && data.meta.docs.description)) {
-    spinner.fail(`Rule ${name} does not have a description`)
-    process.exitCode = 1
-    break
-  }
-  const description = data.meta.docs.description
-
-  const docFile = path.resolve(docsDir, name + '.md')
-  const friendlyPath = path
-    .relative(projectRoot, docFile)
-    .replace(name, chalk.bold(name))
-  let docs
-  try {
-    docs = fs.readFileSync(docFile, 'utf-8').split('\n')
-  } catch (e) {
-    spinner.fail(
-      `Could not read the docs for ${chalk.bold(name)} at ${friendlyPath}`
+  const ruleLines = []
+  for (const rulePath of rulePaths) {
+    const name = path.basename(rulePath, path.extname(rulePath))
+    spinner.start(
+      `${verb} rule ${rulePaths.indexOf(rulePath)} of ${rulePaths.length}...`
     )
-    console.error(chalk.gray(e.stack))
-    process.exitCode = 1
-    break
-  }
 
-  const newDocs = [`# ${description} (${name})`]
-    .concat(docs.slice(1))
-    .join('\n')
-  if (newDocs !== docs.join('\n')) {
-    if (isChecking) {
-      spinner.fail(
-        `The description for ${chalk.bold(
-          name
-        )} must match the required format:`
-      )
-      console.error(
-        colorDiff(friendlyPath, 'generated', docs.join('\n'), newDocs)
-      )
+    const data = require(rulePath)
+    if (!(data.meta && data.meta.docs && data.meta.docs.description)) {
+      spinner.fail(`Rule ${name} does not have a description`)
       process.exitCode = 1
-      break
-    } else {
-      spinner.info(`Updating the docs for ${chalk.bold(name)}:`)
-      console.log(
-        colorDiff(friendlyPath, 'generated', docs.join('\n'), newDocs)
-      )
+      return
     }
-  }
+    const description = data.meta.docs.description
 
-  ruleLines.push({
-    name,
-    description,
-  })
-
-  if (isChecking) {
-    spinner.succeed(`${friendlyPath} is valid`)
-  } else {
+    const docFile = path.resolve(docsDir, name + '.md')
+    const friendlyPath = path
+      .relative(projectRoot, docFile)
+      .replace(name, chalk.bold(name))
+    let docs
     try {
-      fs.writeFileSync(docFile, newDocs)
-      spinner.succeed(`${friendlyPath} is up-to-date`)
+      docs = fs.readFileSync(docFile, 'utf-8').split('\n')
     } catch (e) {
       spinner.fail(
-        `Could not update the docs for ${chalk.bold(name)} at ${friendlyPath}`
+        `Could not read the docs for ${chalk.bold(name)} at ${friendlyPath}`
       )
       console.error(chalk.gray(e.stack))
       process.exitCode = 1
-      break
+      return
+    }
+
+    const newDocs = [`# ${description} (${name})`]
+      .concat(docs.slice(1))
+      .join('\n')
+    if (newDocs !== docs.join('\n')) {
+      if (isChecking) {
+        spinner.fail(
+          `The description for ${chalk.bold(
+            name
+          )} must match the required format:`
+        )
+        console.error(
+          colorDiff(friendlyPath, 'generated', docs.join('\n'), newDocs)
+        )
+        process.exitCode = 1
+        break
+      } else {
+        spinner.info(`Updating the docs for ${chalk.bold(name)}:`)
+        console.log(
+          colorDiff(friendlyPath, 'generated', docs.join('\n'), newDocs)
+        )
+      }
+    }
+
+    ruleLines.push({
+      name,
+      description,
+    })
+
+    if (isChecking) {
+      spinner.succeed(`${friendlyPath} is valid`)
+    } else {
+      try {
+        fs.writeFileSync(docFile, newDocs)
+        spinner.succeed(`${friendlyPath} is up-to-date`)
+      } catch (e) {
+        spinner.fail(
+          `Could not update the docs for ${chalk.bold(name)} at ${friendlyPath}`
+        )
+        console.error(chalk.gray(e.stack))
+        process.exitCode = 1
+        return
+      }
     }
   }
-}
 
-let readme
-if (!process.exitCode) {
+  let readme
   spinner.start(`${verb} README...`)
   try {
     readme = fs.readFileSync(readmePath, 'utf-8')
@@ -106,9 +104,8 @@ if (!process.exitCode) {
     spinner.fail(`Could not read the docs for the README`)
     console.error(chalk.gray(e.stack))
     process.exitCode = 1
+    return
   }
-}
-if (!process.exitCode) {
   const ruleSection = ruleLines.map(
     ({ name, description }) =>
       `* [\`${name}\`](./docs/rules/${name}.md) — ${description}`
@@ -143,7 +140,9 @@ ${ruleSection.join('\n')}
       process.exitCode = 1
     }
   }
-}
+})()
+
+// execution should end here.
 
 function colorDiff(oldFile, newFile, oldText, newText) {
   return diff
