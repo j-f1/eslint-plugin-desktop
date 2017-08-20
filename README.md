@@ -1,5 +1,7 @@
 # eslint-plugin-desktop
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/j-f1/eslint-plugin-desktop.svg)](https://greenkeeper.io/)
+
 [![Travis](https://img.shields.io/travis/j-f1/eslint-plugin-desktop.svg)](https://travis-ci.org/j-f1/eslint-plugin-desktop)
 
 Custom rules used in the GitHub Desktop codebase
