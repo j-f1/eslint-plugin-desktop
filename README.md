@@ -1,6 +1,6 @@
 # eslint-plugin-desktop
 
-[![ISC License](https://img.shields.io/github/license/j-f1/eslint-plugin-desktop.svg?style=flat-square)](./llicense.md)
+[![ISC License](https://img.shields.io/github/license/j-f1/eslint-plugin-desktop.svg?style=flat-square)](./license.md)
 [![contributor count](https://img.shields.io/github/contributors/j-f1/eslint-plugin-desktop.svg?style=flat-square)](./graphs/contributors)
 ![npm](https://img.shields.io/badge/npm-j--f1/eslint--plugin--desktop-lightgray.svg?style=flat-square)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](https://standardjs.com)
