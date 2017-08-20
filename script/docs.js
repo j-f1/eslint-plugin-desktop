@@ -37,8 +37,10 @@ for (const rulePath of rulePaths) {
   const description = data.meta.docs.description
 
   const docFile = path.resolve(docsDir, name + '.md')
-  const friendlyPath = path.relative(projectRoot, docFile)
   const docs = fs.readFileSync(docFile, 'utf-8').split('\n')
+  const friendlyPath = path
+    .relative(projectRoot, docFile)
+    .replace(name, chalk.bold(name))
 
   const newDocs = [`# ${description} (${name})`]
     .concat(docs.slice(1))
@@ -46,7 +48,9 @@ for (const rulePath of rulePaths) {
   if (newDocs !== docs.join('\n')) {
     if (isChecking) {
       spinner.fail(
-        `The description for ${name} must match the required format:`
+        `The description for ${chalk.bold(
+          name
+        )} must match the required format:`
       )
       console.error(
         colorDiff(friendlyPath, 'generated', docs.join('\n'), newDocs)
@@ -54,7 +58,7 @@ for (const rulePath of rulePaths) {
       process.exitCode = 1
       break
     } else {
-      spinner.info(`Updating the docs for ${name}:`)
+      spinner.info(`Updating the docs for ${chalk.bold(name)}:`)
       console.log(
         colorDiff(friendlyPath, 'generated', docs.join('\n'), newDocs)
       )
