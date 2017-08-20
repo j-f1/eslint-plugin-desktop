@@ -37,10 +37,20 @@ for (const rulePath of rulePaths) {
   const description = data.meta.docs.description
 
   const docFile = path.resolve(docsDir, name + '.md')
-  const docs = fs.readFileSync(docFile, 'utf-8').split('\n')
   const friendlyPath = path
     .relative(projectRoot, docFile)
     .replace(name, chalk.bold(name))
+  let docs
+  try {
+    docs = fs.readFileSync(docFile, 'utf-8').split('\n')
+  } catch (e) {
+    spinner.fail(
+      `Could not read the docs for ${chalk.bold(name)} at ${friendlyPath}`
+    )
+    console.error(chalk.gray(e.stack))
+    process.exitCode = 1
+    break
+  }
 
   const newDocs = [`# ${description} (${name})`]
     .concat(docs.slice(1))
@@ -73,15 +83,32 @@ for (const rulePath of rulePaths) {
   if (isChecking) {
     spinner.succeed(`${friendlyPath} is valid`)
   } else {
-    fs.writeFileSync(docFile, newDocs)
-    spinner.succeed(`${friendlyPath} is up-to-date`)
+    try {
+      fs.writeFileSync(docFile, newDocs)
+      spinner.succeed(`${friendlyPath} is up-to-date`)
+    } catch (e) {
+      spinner.fail(
+        `Could not update the docs for ${chalk.bold(name)} at ${friendlyPath}`
+      )
+      console.error(chalk.gray(e.stack))
+      process.exitCode = 1
+      break
+    }
   }
 }
 
+let readme
 if (!process.exitCode) {
   spinner.start(`${verb} README...`)
-  const readme = fs.readFileSync(readmePath, 'utf-8')
-
+  try {
+    readme = fs.readFileSync(readmePath, 'utf-8')
+  } catch (e) {
+    spinner.fail(`Could not read the docs for the README`)
+    console.error(chalk.gray(e.stack))
+    process.exitCode = 1
+  }
+}
+if (!process.exitCode) {
   const ruleSection = ruleLines.map(
     ({ name, description }) =>
       `* [\`${name}\`](./docs/rules/${name}.md) — ${description}`
@@ -107,8 +134,14 @@ ${ruleSection.join('\n')}
   if (isChecking) {
     spinner.succeed('The README is valid')
   } else {
-    fs.writeFileSync(readmePath, updatedReadme)
-    spinner.succeed('README.md is up-to-date')
+    try {
+      fs.writeFileSync(readmePath, updatedReadme)
+      spinner.succeed('README.md is up-to-date')
+    } catch (e) {
+      spinner.fail(`Could not update the README`)
+      console.error(chalk.gray(e.stack))
+      process.exitCode = 1
+    }
   }
 }
 
