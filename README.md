@@ -1,8 +1,11 @@
 # eslint-plugin-desktop
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/j-f1/eslint-plugin-desktop.svg)](https://greenkeeper.io/)
-
-[![Travis](https://img.shields.io/travis/j-f1/eslint-plugin-desktop.svg)](https://travis-ci.org/j-f1/eslint-plugin-desktop)
+[![ISC License](https://img.shields.io/github/license/j-f1/eslint-plugin-desktop.svg)](./llicense.md)
+[![contributor count](https://img.shields.io/github/contributors/j-f1/eslint-plugin-desktop.svg)](./graphs/contributors)
+![npm](https://img.shields.io/badge/npm-j--f1/eslint--plugin--desktop-lightgray.svg?style=flat-square)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](https://standardjs.com)
+[![Travis](https://img.shields.io/travis/j-f1/eslint-plugin-desktop.svg?style=flat-square)](https://travis-ci.org/j-f1/eslint-plugin-desktop)
+[![Greenkeeper badge](https://badges.greenkeeper.io/j-f1/eslint-plugin-desktop.svg?style=flat-square)](https://greenkeeper.io/)
 
 Custom rules (soon to be) used in the GitHub Desktop codebase
 
