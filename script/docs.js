@@ -129,5 +129,6 @@ function colorDiff(oldFile, newFile, oldText, newText) {
           return chunk
       }
     })
+    .map(chunk => `  ${chunk}`) // indent
     .join('\n')
 }
