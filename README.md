@@ -60,6 +60,9 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
+<!-- Please run `npm run docs` to update this section -->
+<!-- begin rule list -->
 * [`no-insecure-random`](./docs/rules/no-insecure-random.md) — Forbid insecure sources for random data
 * [`no-stateless-class`](./docs/rules/no-stateless-class.md) — Forbid classes without state
-* [`promise-must-complete`](./docs/rules/promise-must-complete.md)  — When a Promise is created with `new Promise`, the function provided must call `reject()` or `resolve()` in all branches
+* [`promise-must-complete`](./docs/rules/promise-must-complete.md) — When a Promise is created with `new Promise`, the function provided must call `reject()` or `resolve()` in all branches.
+<!-- end rule list -->

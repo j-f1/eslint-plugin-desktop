@@ -10,8 +10,10 @@
   "author": "Jed Fox",
   "main": "lib/index.js",
   "scripts": {
+    "docs": "node script/docs",
+    "docs:check": "node script/docs check",
     "lint": "eslint 'lib/**/*.js' 'tests/**/*.js' 'docs/**/*.md'",
-    "test": "npm -s run lint && npm -s run mocha",
+    "test": "npm -s run lint && npm -s run mocha && npm -s run docs:check",
     "mocha": "mocha tests --recursive"
   },
   "dependencies": {
@@ -27,10 +29,13 @@
     "typescript-eslint-parser": "^6.0.0"
   },
   "devDependencies": {
+    "chalk": "^2.1.0",
+    "diff": "^3.3.0",
     "eslint": "^4.4.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "^3.1.2",
+    "ora": "^1.3.0",
     "prettier": "^1.5.3",
     "typescript": "^2.4.2"
   },
