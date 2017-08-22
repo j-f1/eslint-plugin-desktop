@@ -26,7 +26,7 @@
     "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-typescript": "github:nzakas/eslint-plugin-typescript#26f2609",
-    "typescript-eslint-parser": "^6.0.0"
+    "typescript-eslint-parser": "^7.0.0"
   },
   "devDependencies": {
     "chalk": "^2.1.0",
