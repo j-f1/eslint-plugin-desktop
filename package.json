@@ -10,14 +10,15 @@
   "author": "Jed Fox",
   "main": "lib/index.js",
   "scripts": {
-    "docs": "node script/docs",
-    "docs:check": "node script/docs check",
+    "docs": "eslint-docs",
+    "docs:check": "eslint-docs check",
     "lint": "eslint 'lib/**/*.js' 'tests/**/*.js' 'docs/**/*.md'",
     "test": "npm -s run lint && npm -s run mocha && npm -s run docs:check",
     "mocha": "mocha tests --recursive"
   },
   "dependencies": {
     "eslint-config-prettier": "^2.3.0",
+    "eslint-docs": "0.0.3",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-markdown": "^1.0.0-beta.6",
     "eslint-plugin-node": "^5.1.1",
