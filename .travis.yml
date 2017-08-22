@@ -4,6 +4,11 @@ node_js:
   - 8
   - 6
 
+cache:
+  directories:
+    - node_modules
+    - .eslintcache
+
 # https://github.com/greenkeeperio/greenkeeper-lockfile/blob/e4ba1a3/README.md#npm
 before_install:
 # package-lock.json was introduced in npm@5

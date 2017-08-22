@@ -12,7 +12,7 @@
   "scripts": {
     "docs": "eslint-docs",
     "docs:check": "eslint-docs check",
-    "lint": "eslint 'lib/**/*.js' 'tests/**/*.js' 'docs/**/*.md'",
+    "lint": "eslint --cache 'lib/**/*.js' 'tests/**/*.js' 'docs/**/*.md'",
     "test": "npm -s run lint && npm -s run mocha && npm -s run docs:check",
     "mocha": "mocha tests --recursive"
   },
