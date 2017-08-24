@@ -13,6 +13,8 @@ rules:
     - semi: false
       singleQuote: true
       trailingComma: es5
+  require-jsdoc: warn
+  valid-jsdoc: error
   spaced-comment:
     - error
     - always
