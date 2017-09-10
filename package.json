@@ -30,7 +30,6 @@
     "mocha": "mocha tests --recursive"
   },
   "dependencies": {
-    "esdispatch": "0.0.3",
     "eslint-config-prettier": "^2.3.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.7.0",
@@ -39,6 +38,7 @@
     "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-typescript": "github:nzakas/eslint-plugin-typescript#26f2609",
+    "estraverse": "^4.2.0",
     "requireindex": "~1.1.0",
     "typescript-eslint-parser": "^8.0.0"
   },
