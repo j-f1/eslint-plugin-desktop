@@ -76,6 +76,7 @@ ruleTester.run('react-lifecycle-method-syntax', rule, {
           componentWillMount(foo: Bar) {}
         }
       `,
+      output: null,
       errors: [
         {
           message: 'componentWillMount should not accept any parameters.',
@@ -90,6 +91,7 @@ ruleTester.run('react-lifecycle-method-syntax', rule, {
           componentWillReceiveProps(nextProps: P, nextState: S) {}
         }
       `,
+      output: null,
       errors: [
         {
           message: 'Unknown parameter `nextState`',

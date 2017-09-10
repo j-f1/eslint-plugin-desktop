@@ -3,9 +3,12 @@ plugins:
   - prettier
   - markdown
 
+  - eslint-plugin
+
 extends:
   - standard
   - prettier
+  - plugin:eslint-plugin/recommended
 
 rules:
   prettier/prettier:
@@ -13,6 +16,7 @@ rules:
     - semi: false
       singleQuote: true
       trailingComma: es5
+
   require-jsdoc: warn
   valid-jsdoc: error
   spaced-comment:
@@ -23,3 +27,12 @@ rules:
         - '-'
       markers:
         - /
+
+  eslint-plugin/test-case-shorthand-strings:
+    - error
+    - consistent-as-needed
+  eslint-plugin/test-case-property-ordering: error
+  eslint-plugin/prefer-placeholders: error
+  eslint-plugin/prefer-output-null: error
+  eslint-plugin/no-deprecated-context-methods: error
+  eslint-plugin/consistent-output: error

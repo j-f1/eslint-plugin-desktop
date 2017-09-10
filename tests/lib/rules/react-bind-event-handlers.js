@@ -79,6 +79,7 @@ ruleTester.run('react-bind-event-handlers', rule, {
           }
         }
       `,
+      output: null,
       errors: [
         {
           message: '`onEvent` can’t be found on <Foo />.',
