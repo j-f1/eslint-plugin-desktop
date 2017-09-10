@@ -8,7 +8,20 @@
     "eslint-plugin"
   ],
   "author": "Jed Fox",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j-f1/eslint-plugin-desktop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/j-f1/eslint-plugin-desktop/issues"
+  },
+  "homepage": "https://github.com/j-f1/eslint-plugin-desktop#readme",
   "main": "lib/index.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib",
+    "test": "tests"
+  },
   "scripts": {
     "docs": "eslint-docs",
     "docs:check": "eslint-docs check",
