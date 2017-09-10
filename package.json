@@ -38,7 +38,7 @@
     "eslint-plugin-prettier": "^2.2.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "eslint-plugin-typescript": "github:nzakas/eslint-plugin-typescript#26f2609",
+    "eslint-plugin-typescript": "github:j-f1/forked-eslint-plugin-typescript#d60e930c45d983736b1b655e914b2fd48842b51d",
     "estraverse": "^4.2.0",
     "requireindex": "~1.1.0",
     "typescript-eslint-parser": "^9.0.0"
