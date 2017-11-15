@@ -1,17 +1,22 @@
 # Forbid erroneous usage of React lifecycle methods (react-lifecycle-method-syntax)
 
-Please describe the origin of the rule here.
-
+This rule was [originally created](https://github.com/desktop/desktop/blob/66f4984d186ac6202f84178decd6a44456f3b9cc/tslint-rules/reactProperLifecycleMethodsRule.ts) as a TSLint rule for the GitHub Desktop app.
 
 ## Rule Details
 
-This rule aims to...
+This rule aims to ensure that you don’t misspell the names of React lifecycle methods and that you use the correct parameter names (and types if you’re using TypeScript) for those methods.
 
 Examples of **incorrect** code for this rule:
 
-```js
+```ts
 
-// fill me in
+class MyComponent extends React.Component<MyProps, MyState> {
+  componentWillMount(extraParameter) {}
+  componentWillReceiveProps(props: string) {
+    // parameter is `nextProps`, and it should be of type `MyProps`
+  }
+  componentWIllUnmout() {} // that’s a typo!
+}
 
 ```
 
@@ -19,18 +24,18 @@ Examples of **correct** code for this rule:
 
 ```js
 
-// fill me in
+class MyComponent extends React.Component<MyProps, MyState> {
+  componentWillMount() {}
+  componentWillReceiveProps(nextProps: MyProps) {}
+  componentWillUnmount() {}
+}
 
 ```
 
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
-
 ## When Not To Use It
 
-Give a short description of when it would be appropriate to turn off this rule.
+If you don’t use React, this rule won’t help you. If you’re using Flow, please help by adding support for Flow type annotations :smile:
 
 ## Further Reading
 
-If there are other links that describe the issue this rule addresses, please include them here in a bulleted list.
+* [The original rule from desktop/desktop](https://github.com/desktop/desktop/blob/66f4984d186ac6202f84178decd6a44456f3b9cc/tslint-rules/reactProperLifecycleMethodsRule.ts)
