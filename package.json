@@ -41,7 +41,7 @@
     "eslint-plugin-typescript": "github:nzakas/eslint-plugin-typescript#26f2609",
     "estraverse": "^4.2.0",
     "requireindex": "~1.1.0",
-    "typescript-eslint-parser": "^9.0.0"
+    "typescript-eslint-parser": "^12.0.0"
   },
   "devDependencies": {
     "chalk": "^2.1.0",
