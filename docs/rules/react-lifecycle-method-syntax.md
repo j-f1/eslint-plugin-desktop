@@ -15,7 +15,7 @@ class MyComponent extends React.Component<MyProps, MyState> {
   componentWillReceiveProps(props: string) {
     // parameter is `nextProps`, and it should be of type `MyProps`
   }
-  componentWIllUnmout() {} // that’s a typo!
+  componentWIllUnmout() {} // that’s a typo!
 }
 
 ```
